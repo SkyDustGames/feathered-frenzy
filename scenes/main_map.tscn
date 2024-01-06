@@ -1,0 +1,478 @@
+[gd_scene load_steps=20 format=3 uid="uid://43cf0c8qoqgy"]
+
+[ext_resource type="Texture2D" uid="uid://chxv8lpudmvi0" path="res://sprites/coin.png" id="1_a08sm"]
+[ext_resource type="PackedScene" uid="uid://bjbyg6hh823wi" path="res://prefabs/player.tscn" id="1_av2d1"]
+[ext_resource type="Script" path="res://scripts/weapon_shop.gd" id="1_do2fa"]
+[ext_resource type="Script" path="res://scripts/spawner.gd" id="1_kfvpd"]
+[ext_resource type="Texture2D" uid="uid://ciqj254hc8cd5" path="res://sprites/heart.png" id="2_26eal"]
+[ext_resource type="Texture2D" uid="uid://bs1acm5cq4m2o" path="res://sprites/swan_poison.png" id="3_gsc2l"]
+[ext_resource type="Texture2D" uid="uid://bh6q5k3ftme7j" path="res://sprites/rocket_launcher.png" id="4_6bl62"]
+[ext_resource type="Texture2D" uid="uid://nyjtv5vgyvf6" path="res://sprites/machine_gun.png" id="4_618x2"]
+[ext_resource type="Texture2D" uid="uid://bbwrg5o6w837a" path="res://sprites/gun.png" id="4_n1ly4"]
+[ext_resource type="Theme" uid="uid://beih72gbkr6vb" path="res://graphics/ui_theme.tres" id="4_okhny"]
+[ext_resource type="PackedScene" uid="uid://c783bxgwq8omu" path="res://prefabs/swan.tscn" id="4_omal6"]
+[ext_resource type="Texture2D" uid="uid://02wfvyb2jgg5" path="res://sprites/sniper_rifle.png" id="5_ngi0n"]
+[ext_resource type="PackedScene" uid="uid://bbbvqj5r0hkyl" path="res://prefabs/armored_swan.tscn" id="5_ynnnn"]
+[ext_resource type="PackedScene" uid="uid://dgq3b73g1jlit" path="res://prefabs/weapon_shop.tscn" id="10_12qr5"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="13_ee68s"]
+[ext_resource type="Texture2D" uid="uid://htop5rrsm5lk" path="res://sprites/lake.png" id="14_4up2w"]
+[ext_resource type="Script" path="res://scripts/parralax.gd" id="14_dq5t7"]
+[ext_resource type="Texture2D" uid="uid://b2oejj5ud37qf" path="res://sprites/mind_bg.png" id="15_mh2bj"]
+[ext_resource type="Texture2D" uid="uid://xmglpk6bwtr0" path="res://sprites/square.png" id="16_hn1wy"]
+
+[node name="MainMap" type="Node2D"]
+script = ExtResource("1_kfvpd")
+swan_prefab = ExtResource("4_omal6")
+armored_swan = ExtResource("5_ynnnn")
+max_waves = 10
+enemy_count = 5
+radius = 250.0
+spawn_time = 1.0
+pistol_sprite = ExtResource("4_n1ly4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Coins" type="Label" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 76.0
+offset_top = 24.0
+offset_right = 61.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme = ExtResource("4_okhny")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 46
+text = "0"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Coins"]
+layout_mode = 0
+offset_left = -42.0
+offset_top = 11.0
+offset_right = -2.0
+offset_bottom = 51.0
+texture = ExtResource("1_a08sm")
+
+[node name="Health" type="Label" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 76.0
+offset_top = 88.0
+offset_right = -13.0
+offset_bottom = 152.0
+grow_horizontal = 2
+theme = ExtResource("4_okhny")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 46
+text = "0"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Health"]
+layout_mode = 0
+offset_left = -42.0
+offset_top = 11.0
+offset_right = -2.0
+offset_bottom = 51.0
+texture = ExtResource("2_26eal")
+
+[node name="WeaponShopUI" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -270.0
+offset_right = 480.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_okhny")
+color = Color(0.588235, 0.282353, 0.152941, 1)
+script = ExtResource("1_do2fa")
+
+[node name="Label" type="Label" parent="CanvasLayer/WeaponShopUI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 72
+text = "WEAPON SHOP"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/WeaponShopUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 94.0
+offset_right = -29.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="SwanPoison" type="ColorRect" parent="CanvasLayer/WeaponShopUI/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.74902, 0.376471, 0.223529, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/WeaponShopUI/GridContainer/SwanPoison"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 24.0
+offset_right = 193.0
+offset_bottom = 195.0
+texture = ExtResource("3_gsc2l")
+
+[node name="Label" type="Label" parent="CanvasLayer/WeaponShopUI/GridContainer/SwanPoison"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 42.0
+offset_right = 321.0
+offset_bottom = 94.0
+theme_override_font_sizes/font_size = 36
+text = "Swan Poison"
+
+[node name="Price" type="Label" parent="CanvasLayer/WeaponShopUI/GridContainer/SwanPoison"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 84.0
+offset_right = 321.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 24
+text = "15 coins"
+
+[node name="Button" type="Button" parent="CanvasLayer/WeaponShopUI/GridContainer/SwanPoison"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 127.0
+offset_right = 434.0
+offset_bottom = 185.0
+theme_override_font_sizes/font_size = 36
+text = "Buy"
+
+[node name="MachineGun" type="ColorRect" parent="CanvasLayer/WeaponShopUI/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.74902, 0.376471, 0.223529, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/WeaponShopUI/GridContainer/MachineGun"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 24.0
+offset_right = 193.0
+offset_bottom = 195.0
+texture = ExtResource("4_618x2")
+
+[node name="Label" type="Label" parent="CanvasLayer/WeaponShopUI/GridContainer/MachineGun"]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 42.0
+offset_right = 444.0
+offset_bottom = 94.0
+theme_override_font_sizes/font_size = 36
+text = "Machine Gun"
+
+[node name="Price" type="Label" parent="CanvasLayer/WeaponShopUI/GridContainer/MachineGun"]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 84.0
+offset_right = 310.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 24
+text = "25 coins"
+
+[node name="Button" type="Button" parent="CanvasLayer/WeaponShopUI/GridContainer/MachineGun"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 127.0
+offset_right = 434.0
+offset_bottom = 185.0
+theme_override_font_sizes/font_size = 36
+text = "Buy"
+
+[node name="SniperRifle" type="ColorRect" parent="CanvasLayer/WeaponShopUI/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.74902, 0.376471, 0.223529, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/WeaponShopUI/GridContainer/SniperRifle"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 24.0
+offset_right = 193.0
+offset_bottom = 195.0
+texture = ExtResource("5_ngi0n")
+
+[node name="Label" type="Label" parent="CanvasLayer/WeaponShopUI/GridContainer/SniperRifle"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 42.0
+offset_right = 321.0
+offset_bottom = 94.0
+theme_override_font_sizes/font_size = 36
+text = "Sniper Rifle"
+
+[node name="Price" type="Label" parent="CanvasLayer/WeaponShopUI/GridContainer/SniperRifle"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 84.0
+offset_right = 321.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 24
+text = "25 coins"
+
+[node name="Button" type="Button" parent="CanvasLayer/WeaponShopUI/GridContainer/SniperRifle"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 127.0
+offset_right = 434.0
+offset_bottom = 185.0
+theme_override_font_sizes/font_size = 36
+text = "Buy"
+
+[node name="RocketLauncher" type="ColorRect" parent="CanvasLayer/WeaponShopUI/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.74902, 0.376471, 0.223529, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/WeaponShopUI/GridContainer/RocketLauncher"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 24.0
+offset_right = 193.0
+offset_bottom = 195.0
+texture = ExtResource("4_6bl62")
+
+[node name="Label" type="Label" parent="CanvasLayer/WeaponShopUI/GridContainer/RocketLauncher"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 51.0
+offset_right = 451.0
+offset_bottom = 87.0
+theme_override_font_sizes/font_size = 29
+text = "Rocket Launcher"
+
+[node name="Price" type="Label" parent="CanvasLayer/WeaponShopUI/GridContainer/RocketLauncher"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 84.0
+offset_right = 306.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 24
+text = "50 coins"
+
+[node name="Button" type="Button" parent="CanvasLayer/WeaponShopUI/GridContainer/RocketLauncher"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 127.0
+offset_right = 434.0
+offset_bottom = 185.0
+theme_override_font_sizes/font_size = 36
+text = "Buy"
+
+[node name="Close" type="Button" parent="CanvasLayer/WeaponShopUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 45.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 36
+text = "X"
+
+[node name="WaveCountdown" type="Label" parent="CanvasLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("4_okhny")
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 1
+
+[node name="PauseController" type="Control" parent="CanvasLayer"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1280.0
+offset_bottom = -720.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_okhny")
+script = ExtResource("13_ee68s")
+
+[node name="PauseMenu" type="ColorRect" parent="CanvasLayer/PauseController"]
+process_mode = 2
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1281.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.792157)
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseController/PauseMenu"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 54.0
+offset_bottom = 131.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 128
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="CanvasLayer/PauseController/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -126.5
+offset_right = 119.0
+offset_bottom = -49.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Resume"
+
+[node name="StartMenu" type="Button" parent="CanvasLayer/PauseController/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -32.5
+offset_right = 187.0
+offset_bottom = 44.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Start Menu"
+
+[node name="Restart" type="Button" parent="CanvasLayer/PauseController/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.5
+offset_top = 58.5
+offset_right = 139.5
+offset_bottom = 135.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Restart"
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Player" parent="Environment" instance=ExtResource("1_av2d1")]
+health = 10.0
+
+[node name="Label" type="Label" parent="Environment/Player"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -28.5
+offset_right = 27.0
+offset_bottom = -17.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_okhny")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+
+[node name="WeaponShop" parent="Environment" instance=ExtResource("10_12qr5")]
+position = Vector2(207, -40)
+
+[node name="Grass" type="Sprite2D" parent="Environment"]
+modulate = Color(0.211765, 0.243137, 0.6, 1)
+z_index = -6
+scale = Vector2(10000, 10000)
+texture = ExtResource("16_hn1wy")
+
+[node name="Lake" type="Sprite2D" parent="Environment"]
+z_index = -5
+scale = Vector2(25, 25)
+texture = ExtResource("14_4up2w")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+
+[node name="Parallax" type="Node2D" parent="Camera2D"]
+z_index = -7
+
+[node name="BG1" type="Node2D" parent="Camera2D/Parallax"]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("14_dq5t7")
+speed = 250.0
+
+[node name="BG1" type="Sprite2D" parent="Camera2D/Parallax/BG1"]
+z_index = -5
+scale = Vector2(10, 10)
+texture = ExtResource("15_mh2bj")
+vframes = 2
+
+[node name="BG2" type="Sprite2D" parent="Camera2D/Parallax/BG1"]
+z_index = -5
+position = Vector2(700, 0)
+scale = Vector2(10, 10)
+texture = ExtResource("15_mh2bj")
+vframes = 2
+frame = 1
+
+[node name="BG2" type="Node2D" parent="Camera2D/Parallax"]
+script = ExtResource("14_dq5t7")
+speed = 500.0
+
+[node name="BG1" type="Sprite2D" parent="Camera2D/Parallax/BG2"]
+z_index = -5
+scale = Vector2(10, 10)
+texture = ExtResource("15_mh2bj")
+vframes = 2
+
+[node name="BG2" type="Sprite2D" parent="Camera2D/Parallax/BG2"]
+z_index = -5
+position = Vector2(700, 0)
+scale = Vector2(10, 10)
+texture = ExtResource("15_mh2bj")
+vframes = 2
+frame = 1
+
+[connection signal="pressed" from="CanvasLayer/WeaponShopUI/GridContainer/SwanPoison/Button" to="CanvasLayer/WeaponShopUI" method="buy" binds= ["res://prefabs/guns/swan_poison.tscn", 15]]
+[connection signal="pressed" from="CanvasLayer/WeaponShopUI/GridContainer/MachineGun/Button" to="CanvasLayer/WeaponShopUI" method="buy" binds= ["res://prefabs/guns/machine_gun.tscn", 25]]
+[connection signal="pressed" from="CanvasLayer/WeaponShopUI/GridContainer/SniperRifle/Button" to="CanvasLayer/WeaponShopUI" method="buy" binds= ["res://prefabs/guns/sniper_rifle.tscn", 25]]
+[connection signal="pressed" from="CanvasLayer/WeaponShopUI/GridContainer/RocketLauncher/Button" to="CanvasLayer/WeaponShopUI" method="buy" binds= ["res://prefabs/guns/rocket_launcher.tscn", 50]]
+[connection signal="pressed" from="CanvasLayer/WeaponShopUI/Close" to="CanvasLayer/WeaponShopUI" method="hide"]
+[connection signal="pressed" from="CanvasLayer/PauseController/PauseMenu/Resume" to="CanvasLayer/PauseController" method="toggle_pause"]
+[connection signal="pressed" from="CanvasLayer/PauseController/PauseMenu/StartMenu" to="CanvasLayer/PauseController" method="start"]
+[connection signal="pressed" from="CanvasLayer/PauseController/PauseMenu/Restart" to="CanvasLayer/PauseController" method="restart"]

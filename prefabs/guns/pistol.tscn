@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://6u6yvdvg3x7i"]
+
+[ext_resource type="Script" path="res://scripts/gun_pickup.gd" id="1_i6vud"]
+[ext_resource type="PackedScene" uid="uid://rql5jcch5knw" path="res://prefabs/bullets/mg_bullet.tscn" id="2_voxqw"]
+[ext_resource type="Texture2D" uid="uid://bbwrg5o6w837a" path="res://sprites/gun.png" id="3_esvke"]
+[ext_resource type="Texture2D" uid="uid://d4m6ndph20rht" path="res://sprites/popups.png" id="4_38fev"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7fya"]
+size = Vector2(16, 16)
+
+[node name="Pistol" type="Area2D"]
+script = ExtResource("1_i6vud")
+shoot_time = 0.5
+bullet = ExtResource("2_voxqw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_esvke")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p7fya")
+
+[node name="Popup" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -19)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_38fev")
+vframes = 2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

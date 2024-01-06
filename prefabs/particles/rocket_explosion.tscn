@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbaalsu7y2gbx"]
+
+[ext_resource type="Texture2D" uid="uid://hijqyieqsocp" path="res://sprites/circle.png" id="1_faevi"]
+
+[sub_resource type="Gradient" id="Gradient_yrn6e"]
+colors = PackedColorArray(0.360166, 0.0931879, 2.40654e-08, 1, 1, 0.454902, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sp480"]
+gradient = SubResource("Gradient_yrn6e")
+
+[sub_resource type="Curve" id="Curve_m6ejc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_apbka"]
+curve = SubResource("Curve_m6ejc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5gq8t"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_max = 250.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_apbka")
+color_initial_ramp = SubResource("GradientTexture1D_sp480")
+
+[node name="RocketExplosion" type="GPUParticles2D"]
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_5gq8t")
+texture = ExtResource("1_faevi")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 0
+draw_order = 0

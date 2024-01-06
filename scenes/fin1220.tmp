@@ -1,0 +1,622 @@
+[gd_scene load_steps=24 format=3 uid="uid://dnai5aphjenvp"]
+
+[ext_resource type="Script" path="res://scripts/weapon_shop.gd" id="1_bgp22"]
+[ext_resource type="Texture2D" uid="uid://bbwrg5o6w837a" path="res://sprites/gun.png" id="2_6wu0n"]
+[ext_resource type="Texture2D" uid="uid://bs1acm5cq4m2o" path="res://sprites/swan_poison.png" id="3_e4rrl"]
+[ext_resource type="Texture2D" uid="uid://nyjtv5vgyvf6" path="res://sprites/machine_gun.png" id="4_mu4vl"]
+[ext_resource type="Texture2D" uid="uid://02wfvyb2jgg5" path="res://sprites/sniper_rifle.png" id="5_rrnny"]
+[ext_resource type="PackedScene" uid="uid://bjbyg6hh823wi" path="res://prefabs/player.tscn" id="6_3jtxq"]
+[ext_resource type="Script" path="res://scripts/parralax.gd" id="6_o1xor"]
+[ext_resource type="Texture2D" uid="uid://b2oejj5ud37qf" path="res://sprites/mind_bg.png" id="6_ouxec"]
+[ext_resource type="Script" path="res://scripts/boss.gd" id="7_kpawc"]
+[ext_resource type="Texture2D" uid="uid://dkrmkonylfoql" path="res://sprites/player.png" id="8_6rft7"]
+[ext_resource type="PackedScene" uid="uid://hgoxbwext18j" path="res://prefabs/bullets/bullet2.tscn" id="8_bk1px"]
+[ext_resource type="Texture2D" uid="uid://xe1nrh7ma2v7" path="res://sprites/marker.png" id="11_dudjm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wk4l2"]
+size = Vector2(17, 32)
+
+[sub_resource type="Animation" id="Animation_0k5y4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_16vut"]
+resource_name = "idle_down"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_5q1vf"]
+resource_name = "idle_left"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_r3xc3"]
+resource_name = "idle_right"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_0xdfv"]
+resource_name = "idle_up"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_bxruy"]
+resource_name = "run_down"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_x7ivb"]
+resource_name = "run_left"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_78lah"]
+resource_name = "run_right"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_3jlc0"]
+resource_name = "run_up"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gkwp4"]
+_data = {
+"RESET": SubResource("Animation_0k5y4"),
+"idle_down": SubResource("Animation_16vut"),
+"idle_left": SubResource("Animation_5q1vf"),
+"idle_right": SubResource("Animation_r3xc3"),
+"idle_up": SubResource("Animation_0xdfv"),
+"run_down": SubResource("Animation_bxruy"),
+"run_left": SubResource("Animation_x7ivb"),
+"run_right": SubResource("Animation_78lah"),
+"run_up": SubResource("Animation_3jlc0")
+}
+
+[node name="FinalBoss" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Coins" type="Label" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 15.0
+offset_bottom = 17.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 46
+text = "0"
+vertical_alignment = 1
+
+[node name="Health" type="Label" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 90.0
+offset_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 46
+text = "0"
+vertical_alignment = 1
+
+[node name="WeaponShopUI" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -270.0
+offset_right = 480.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.588235, 0.282353, 0.152941, 1)
+script = ExtResource("1_bgp22")
+
+[node name="Label" type="Label" parent="CanvasLayer/WeaponShopUI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 72
+text = "WEAPON SHOP"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/WeaponShopUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 94.0
+offset_right = -29.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="Pistol" type="ColorRect" parent="CanvasLayer/WeaponShopUI/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.74902, 0.376471, 0.223529, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/WeaponShopUI/GridContainer/Pistol"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 24.0
+offset_right = 193.0
+offset_bottom = 195.0
+texture = ExtResource("2_6wu0n")
+
+[node name="Label" type="Label" parent="CanvasLayer/WeaponShopUI/GridContainer/Pistol"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 42.0
+offset_right = 321.0
+offset_bottom = 94.0
+theme_override_font_sizes/font_size = 36
+text = "Pistol"
+
+[node name="Price" type="Label" parent="CanvasLayer/WeaponShopUI/GridContainer/Pistol"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 84.0
+offset_right = 321.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 24
+text = "10 coins"
+
+[node name="Button" type="Button" parent="CanvasLayer/WeaponShopUI/GridContainer/Pistol"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 127.0
+offset_right = 434.0
+offset_bottom = 185.0
+theme_override_font_sizes/font_size = 36
+text = "Buy"
+
+[node name="SwanPoison" type="ColorRect" parent="CanvasLayer/WeaponShopUI/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.74902, 0.376471, 0.223529, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/WeaponShopUI/GridContainer/SwanPoison"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 24.0
+offset_right = 193.0
+offset_bottom = 195.0
+texture = ExtResource("3_e4rrl")
+
+[node name="Label" type="Label" parent="CanvasLayer/WeaponShopUI/GridContainer/SwanPoison"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 42.0
+offset_right = 321.0
+offset_bottom = 94.0
+theme_override_font_sizes/font_size = 36
+text = "Swan Poison"
+
+[node name="Price" type="Label" parent="CanvasLayer/WeaponShopUI/GridContainer/SwanPoison"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 84.0
+offset_right = 321.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 24
+text = "15 coins"
+
+[node name="Button" type="Button" parent="CanvasLayer/WeaponShopUI/GridContainer/SwanPoison"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 127.0
+offset_right = 434.0
+offset_bottom = 185.0
+theme_override_font_sizes/font_size = 36
+text = "Buy"
+
+[node name="MachineGun" type="ColorRect" parent="CanvasLayer/WeaponShopUI/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.74902, 0.376471, 0.223529, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/WeaponShopUI/GridContainer/MachineGun"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 24.0
+offset_right = 193.0
+offset_bottom = 195.0
+texture = ExtResource("4_mu4vl")
+
+[node name="Label" type="Label" parent="CanvasLayer/WeaponShopUI/GridContainer/MachineGun"]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 42.0
+offset_right = 444.0
+offset_bottom = 94.0
+theme_override_font_sizes/font_size = 36
+text = "Machine Gun"
+
+[node name="Price" type="Label" parent="CanvasLayer/WeaponShopUI/GridContainer/MachineGun"]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 84.0
+offset_right = 310.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 24
+text = "25 coins"
+
+[node name="Button" type="Button" parent="CanvasLayer/WeaponShopUI/GridContainer/MachineGun"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 127.0
+offset_right = 434.0
+offset_bottom = 185.0
+theme_override_font_sizes/font_size = 36
+text = "Buy"
+
+[node name="SniperRifle" type="ColorRect" parent="CanvasLayer/WeaponShopUI/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.74902, 0.376471, 0.223529, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/WeaponShopUI/GridContainer/SniperRifle"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 24.0
+offset_right = 193.0
+offset_bottom = 195.0
+texture = ExtResource("5_rrnny")
+
+[node name="Label" type="Label" parent="CanvasLayer/WeaponShopUI/GridContainer/SniperRifle"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 42.0
+offset_right = 321.0
+offset_bottom = 94.0
+theme_override_font_sizes/font_size = 36
+text = "Sniper Rifle"
+
+[node name="Price" type="Label" parent="CanvasLayer/WeaponShopUI/GridContainer/SniperRifle"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 84.0
+offset_right = 321.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 24
+text = "25 coins"
+
+[node name="Button" type="Button" parent="CanvasLayer/WeaponShopUI/GridContainer/SniperRifle"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 127.0
+offset_right = 434.0
+offset_bottom = 185.0
+theme_override_font_sizes/font_size = 36
+text = "Buy"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+
+[node name="Parallax" type="Node2D" parent="Camera2D"]
+
+[node name="BG1" type="Node2D" parent="Camera2D/Parallax"]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("6_o1xor")
+speed = 250.0
+
+[node name="BG1" type="Sprite2D" parent="Camera2D/Parallax/BG1"]
+z_index = -5
+scale = Vector2(10, 10)
+texture = ExtResource("6_ouxec")
+vframes = 2
+
+[node name="BG2" type="Sprite2D" parent="Camera2D/Parallax/BG1"]
+z_index = -5
+position = Vector2(700, 0)
+scale = Vector2(10, 10)
+texture = ExtResource("6_ouxec")
+vframes = 2
+frame = 1
+
+[node name="BG2" type="Node2D" parent="Camera2D/Parallax"]
+script = ExtResource("6_o1xor")
+speed = 500.0
+
+[node name="BG1" type="Sprite2D" parent="Camera2D/Parallax/BG2"]
+z_index = -5
+scale = Vector2(10, 10)
+texture = ExtResource("6_ouxec")
+vframes = 2
+
+[node name="BG2" type="Sprite2D" parent="Camera2D/Parallax/BG2"]
+z_index = -5
+position = Vector2(700, 0)
+scale = Vector2(10, 10)
+texture = ExtResource("6_ouxec")
+vframes = 2
+frame = 1
+
+[node name="MainBG" type="Sprite2D" parent="Camera2D"]
+modulate = Color(1, 1, 1, 0)
+z_index = -5
+scale = Vector2(45, 45)
+texture = ExtResource("2_6wu0n")
+
+[node name="Player" parent="." instance=ExtResource("6_3jtxq")]
+position = Vector2(0, 100)
+camera_follow = false
+
+[node name="Boss" type="Area2D" parent="." node_paths=PackedStringArray("player", "marker")]
+monitoring = false
+script = ExtResource("7_kpawc")
+attacks = 3
+health = 5.0
+explosion_time = 1.0
+stage1_explosion = 0.1
+stage0_explosion = 1.0
+bullet_prefab = ExtResource("8_bk1px")
+player = NodePath("../Player")
+marker = NodePath("../Marker")
+
+[node name="Sprite2D" type="Sprite2D" parent="Boss"]
+texture = ExtResource("8_6rft7")
+hframes = 4
+vframes = 4
+
+[node name="Arm" type="Sprite2D" parent="Boss/Sprite2D"]
+modulate = Color(100, 0.5, 0.5, 1)
+position = Vector2(6, 5.5)
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_6rft7")
+hframes = 4
+vframes = 4
+frame = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_wk4l2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Boss"]
+libraries = {
+"": SubResource("AnimationLibrary_gkwp4")
+}
+autoplay = "idle_right"
+
+[node name="AttackTimer" type="Timer" parent="Boss"]
+wait_time = 5.0
+autostart = true
+
+[node name="Marker" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.501961)
+z_index = -1
+texture = ExtResource("11_dudjm")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[connection signal="pressed" from="CanvasLayer/WeaponShopUI/GridContainer/Pistol/Button" to="CanvasLayer/WeaponShopUI" method="buy" binds= ["res://prefabs/guns/pistol.tscn", 10]]
+[connection signal="pressed" from="CanvasLayer/WeaponShopUI/GridContainer/SwanPoison/Button" to="CanvasLayer/WeaponShopUI" method="buy" binds= ["res://prefabs/guns/swan_poison.tscn", 15]]
+[connection signal="pressed" from="CanvasLayer/WeaponShopUI/GridContainer/MachineGun/Button" to="CanvasLayer/WeaponShopUI" method="buy" binds= ["res://prefabs/guns/machine_gun.tscn", 25]]
+[connection signal="pressed" from="CanvasLayer/WeaponShopUI/GridContainer/SniperRifle/Button" to="CanvasLayer/WeaponShopUI" method="buy" binds= ["res://prefabs/guns/sniper_rifle.tscn", 25]]
+[connection signal="body_entered" from="Boss" to="Boss" method="_on_body_entered"]
+[connection signal="timeout" from="Boss/AttackTimer" to="Boss" method="next_attack"]

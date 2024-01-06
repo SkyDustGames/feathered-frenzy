@@ -1,0 +1,147 @@
+[gd_scene load_steps=5 format=3 uid="uid://x4piv8c6tk44"]
+
+[ext_resource type="Theme" uid="uid://beih72gbkr6vb" path="res://graphics/ui_theme.tres" id="1_fngmd"]
+[ext_resource type="Script" path="res://scripts/start_menu.gd" id="2_56uwo"]
+[ext_resource type="Texture2D" uid="uid://b2dkedjx6oxbl" path="res://sprites/swan.png" id="2_daibe"]
+[ext_resource type="Texture2D" uid="uid://ciqj254hc8cd5" path="res://sprites/heart.png" id="3_4m1b4"]
+
+[node name="StartMenu" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_fngmd")
+color = Color(0.517647, 0.741176, 1, 1)
+script = ExtResource("2_56uwo")
+
+[node name="MainMenu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 65.0
+offset_bottom = 219.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 128
+text = "Feathered Frenzy"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -409.0
+offset_top = -19.0
+offset_right = -159.0
+offset_bottom = 231.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = -0.404916
+texture = ExtResource("2_daibe")
+
+[node name="Start" type="Button" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 85.0
+offset_top = -107.0
+offset_right = 517.0
+offset_bottom = 59.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Start"
+
+[node name="About" type="Button" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 85.0
+offset_top = 73.0
+offset_right = 517.0
+offset_bottom = 239.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "About"
+
+[node name="AboutMenu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="AboutMenu"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 65.0
+offset_bottom = 181.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 96
+text = "About"
+horizontal_alignment = 1
+
+[node name="Text" type="Label" parent="AboutMenu"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 57.0
+offset_top = 170.0
+offset_right = -64.0
+offset_bottom = 585.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Feathered Frenzy is a top-down shooter game made for the Jame Gam 35, with swans as the special object. You, Player, shoot swans and fight yourself about it at the end.
+
+by SkyDust"
+autowrap_mode = 2
+
+[node name="About" type="Button" parent="AboutMenu"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -251.0
+offset_top = -104.0
+offset_right = -30.0
+offset_bottom = -19.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 48
+text = "Back"
+
+[node name="TextureRect" type="TextureRect" parent="AboutMenu"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -318.0
+offset_right = -159.0
+offset_bottom = -157.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_4m1b4")
+
+[connection signal="pressed" from="MainMenu/Start" to="." method="start"]
+[connection signal="pressed" from="MainMenu/About" to="." method="about"]
+[connection signal="pressed" from="AboutMenu/About" to="." method="main"]

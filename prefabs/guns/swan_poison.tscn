@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://m585doiiwenh"]
+
+[ext_resource type="Script" path="res://scripts/gun_pickup.gd" id="1_u78vq"]
+[ext_resource type="PackedScene" uid="uid://b4qbpx47effak" path="res://prefabs/bullets/sp_bullet.tscn" id="2_f1w7u"]
+[ext_resource type="Texture2D" uid="uid://bs1acm5cq4m2o" path="res://sprites/swan_poison.png" id="3_jn1je"]
+[ext_resource type="Texture2D" uid="uid://d4m6ndph20rht" path="res://sprites/popups.png" id="4_av4ao"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7fya"]
+size = Vector2(16, 16)
+
+[node name="SwanPoison" type="Area2D"]
+script = ExtResource("1_u78vq")
+accuracy = 1.0
+bullet = ExtResource("2_f1w7u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_jn1je")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p7fya")
+
+[node name="Popup" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -19)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_av4ao")
+vframes = 2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

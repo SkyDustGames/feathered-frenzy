@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlwa4soack7f"]
+
+[ext_resource type="Script" path="res://scripts/rocket.gd" id="1_tk4nr"]
+[ext_resource type="Texture2D" uid="uid://iekvpxokppwr" path="res://sprites/rocket.png" id="2_uvkgn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4psrp"]
+size = Vector2(8, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lp3n8"]
+radius = 32.0
+
+[node name="Rocket" type="RigidBody2D" groups=["bullet"]]
+gravity_scale = 0.0
+script = ExtResource("1_tk4nr")
+bullet_speed = 100.0
+damage = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_uvkgn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4psrp")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4psrp")
+
+[node name="ExplosionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
+shape = SubResource("CircleShape2D_lp3n8")
+
+[node name="Lifetimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
+[connection signal="area_entered" from="ExplosionArea" to="." method="_on_explosion_area_entered"]
+[connection signal="area_exited" from="ExplosionArea" to="." method="_on_explosion_area_exited"]
+[connection signal="body_entered" from="ExplosionArea" to="." method="_on_explosion_body_entered"]
+[connection signal="body_exited" from="ExplosionArea" to="." method="_on_explosion_body_exited"]
+[connection signal="timeout" from="Lifetimer" to="." method="_on_lifetimer_timeout"]

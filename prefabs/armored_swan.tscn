@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://bbbvqj5r0hkyl"]
+
+[ext_resource type="Script" path="res://scripts/swan.gd" id="1_kw2dy"]
+[ext_resource type="PackedScene" uid="uid://bw3g60nynyhr6" path="res://prefabs/coin.tscn" id="2_rgqg3"]
+[ext_resource type="PackedScene" uid="uid://dqgqowdup5n1t" path="res://prefabs/chest.tscn" id="3_8ngge"]
+[ext_resource type="Texture2D" uid="uid://b2dkedjx6oxbl" path="res://sprites/swan.png" id="3_lbqxs"]
+[ext_resource type="Texture2D" uid="uid://bpygksx7rjei3" path="res://sprites/swan_armor.png" id="4_hru04"]
+[ext_resource type="PackedScene" uid="uid://x6v05q5vq2o4" path="res://prefabs/heart.tscn" id="4_nxdvc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4lpa"]
+size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3i2ol"]
+radius = 96.0
+
+[node name="ArmoredSwan" type="Area2D" groups=["enemy"]]
+script = ExtResource("1_kw2dy")
+health = 10
+speed = 55.0
+chest_chance = 0.25
+move_time = 5.0
+coin_prefab = ExtResource("2_rgqg3")
+chest_prefab = ExtResource("3_8ngge")
+heart_prefab = ExtResource("4_nxdvc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_lbqxs")
+
+[node name="Armor" type="Sprite2D" parent="."]
+texture = ExtResource("4_hru04")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v4lpa")
+
+[node name="StunTimer" type="Timer" parent="."]
+
+[node name="SeeingRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SeeingRange"]
+shape = SubResource("CircleShape2D_3i2ol")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
+[connection signal="body_entered" from="SeeingRange" to="." method="_on_seeing_range_entered"]
+[connection signal="body_exited" from="SeeingRange" to="." method="_on_seeing_range_exited"]

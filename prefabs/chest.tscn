@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqgqowdup5n1t"]
+
+[ext_resource type="Script" path="res://scripts/chest.gd" id="1_j63mc"]
+[ext_resource type="PackedScene" uid="uid://bw3g60nynyhr6" path="res://prefabs/coin.tscn" id="2_4ciby"]
+[ext_resource type="Texture2D" uid="uid://sepseyqxb4uc" path="res://sprites/chest.png" id="3_43jce"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tauga"]
+size = Vector2(32, 23)
+
+[node name="Chest" type="Area2D" groups=["chest"]]
+script = ExtResource("1_j63mc")
+coin_count = 10
+x_var = 50.0
+y_var = 50.0
+coin_prefab = ExtResource("2_4ciby")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_43jce")
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_tauga")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgq3b73g1jlit"]
+
+[ext_resource type="Script" path="res://scripts/weapon_shop_opener.gd" id="1_gudod"]
+[ext_resource type="Texture2D" uid="uid://cb5rph65i5oq0" path="res://sprites/gun_shop.png" id="2_spxgv"]
+[ext_resource type="Texture2D" uid="uid://d4m6ndph20rht" path="res://sprites/popups.png" id="3_683uq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a63t2"]
+atlas = ExtResource("2_spxgv")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n82t7"]
+atlas = ExtResource("2_spxgv")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7eyo0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a63t2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n82t7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lo3sf"]
+size = Vector2(96, 64)
+
+[node name="WeaponShop" type="Area2D"]
+script = ExtResource("1_gudod")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7eyo0")
+autoplay = "default"
+frame_progress = 0.634522
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lo3sf")
+
+[node name="Popup" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -32)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_683uq")
+vframes = 2
+frame = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
